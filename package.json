@@ -1,0 +1,11 @@
+{
+  "name": "chromecast-image-fetcher",
+  "version": "1.0.0",
+  "description": "fetches background images used by Google's Chromecast",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mattwaggs",
+  "license": "ISC"
+}
