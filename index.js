@@ -28,16 +28,19 @@ var parseInitialStateForImageData = function(initialState) {
         backdrops.push({
             author: imageList[row][1],
             info: (imageList[row][14] || [[""]])[0][0],
-            url: imageList[row][0],
+            url: imageList[row][0].substr(0, imageList[row][0].indexOf('=')),
         });
     }
 
     return backdrops;
 };
 
-request(chromecastHomePageURL, function(err, res) {
-    var result = parseInitialStateFromHtml(res.body.toString());
-    var images = parseInitialStateForImageData(result);
-    console.log(images);
-});
+module.exports.fetchImages = function(cb) {
+    request(chromecastHomePageURL, function(err, res) {
+        if(err) return cb(err, null);
+        var result = parseInitialStateFromHtml(res.body.toString());
+        var images = parseInitialStateForImageData(result);
+        return cb(null, images);
+    });
+};
 
